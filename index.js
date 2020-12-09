@@ -16,7 +16,7 @@ const github = require("@actions/github");
 
     const octokit = github.getOctokit(githubToken);
     const contextRepo = github.context.repo;
-    console.error('*****ju***** index.js.19', github.context.repo.owner, github.context.repo.repo, github.context.repo);
+
     if (!contextRepo.owner || !contextRepo.repo) {
       throw new Error('No repo data')
     }
@@ -30,9 +30,9 @@ const github = require("@actions/github");
           repo: contextRepo.repo,
           issue_number: github.context.issue.number,
         });
-        console.log(`Removed label ${label}`)
+        console.log(`Removed label "${label}"`)
       } catch (err) {
-        console.log(`No label ${label}`)
+        console.log(`No label "${label}"`)
       }
     }
   } catch (e) {
