@@ -16,21 +16,16 @@ const github = require("@actions/github");
     console.error(
       "*****ju***** index.js.32",
       "github.context.repo:",
-      github.context.owner
-    );
-    console.error(
-      "*****ju***** index.js.34",
-      "github.context.issue.number:",
-      github.context.issue.number
+      github.context.repo
     );
     console.error(
       "*****ju***** index.js.35",
       "github.context.issue.labels:",
-      github.context.issue.labels
+      JSON.stringify(github.context)
     );
     for (const label of labels) {
       try {
-        await gitHubClient.issues.removeLabel({
+        await gitHubClient.issues.deleteLabel({
           name: label,
           owner: github.context.owner,
           repo: github.context.repo,
