@@ -4,15 +4,12 @@ const github = require('@actions/github');
 (async function () {
   try {
     const githubToken = core.getInput('github_token', { required: true });
-    const labels = core.getInput('labels')
+    const labels = (core.getInput('labels') || '').split(',').filter(label => (label && label.length));
+
+//    const [owner, repo] = github.context.owner
     console.error('*****ju***** index.js.8','labels', labels);
     core.error('*****ju***** index.js.7','labels', labels);
     
-    return ;
-    labels = labels.split('\n').filter(label => (label && label.length));
-
-    const [owner, repo] = github.context.owner
-
     if (labels.length === 0) {
       return;
     }
