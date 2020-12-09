@@ -13,8 +13,8 @@ const github = require('@actions/github');
     if (labels.length === 0) {
       return;
     }
-
-    const gitHubClient = new github.GitHub(githubToken);
+    
+    const gitHubClient = github.getOctokit(githubToken);
     console.error('*****ju***** index.js.32','github.context.owner:', github.context.owner);
     console.error('*****ju***** index.js.32','github.context.repo:', github.context.owner);
     console.error('*****ju***** index.js.34','github.context.issue.number:', github.context.issue.number);
