@@ -1,3 +1,5 @@
+//https://github.com/actions/toolkit/tree/main/packages/github
+
 const core = require("@actions/core");
 const github = require("@actions/github");
 
@@ -16,12 +18,13 @@ const github = require("@actions/github");
     console.error(
       "*****ju***** index.js.32",
       "github.context.repo:",
-      github.context.repo
+      github.context.repo.owner,
+      github.context.repo.repo
     );
     console.error(
       "*****ju***** index.js.35",
       "github.context.issue.labels:",
-      JSON.stringify(github.context)
+      ...github.context
     );
     for (const label of labels) {
       try {
