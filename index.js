@@ -17,8 +17,9 @@ const github = require("@actions/github");
     const gitHubClient = github.getOctokit(githubToken);
     const repoData = gitHubClient.context.repo ;
     if (!repoData.owner || repoData.repo) {
-      throw new Error('no label provided')
+      throw new Error('No repo data')
     }
+    
     for (const label of labels) {
       console.error("*****ju***** index.js.30", "label", label);
       try {
