@@ -17,7 +17,7 @@ const github = require("@actions/github");
     const octokit = github.getOctokit(githubToken);
     const repoData = github.context.repo ;
     console.error('*****ju***** index.js.19', github.context.repo.owner, github.context.repo.repo, github.context.repo);
-    if (!repoData.owner || repoData.repo) {
+    if (!repoData.owner || !repoData.repo) {
       throw new Error('No repo data')
     }
 
