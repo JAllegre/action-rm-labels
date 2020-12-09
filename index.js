@@ -3,8 +3,8 @@ const github = require('@actions/github');
 
 (async function () {
   try {
-    //const githubToken = core.getInput('github_token', { required: true });
-    //const labels = core.getInput('labels')
+    const githubToken = core.getInput('github_token', { required: true });
+    const labels = core.getInput('labels')
     console.error('*****ju***** index.js.8','labels', labels);
     core.error('*****ju***** index.js.7','labels', labels);
     
