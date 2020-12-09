@@ -21,7 +21,6 @@ const github = require("@actions/github");
     }
 
     for (const label of labels) {
-      console.error("*****ju***** index.js.30", "label", label);
       try {
         await gitHubClient.issues.removeLabel({
           name: label,
@@ -30,7 +29,6 @@ const github = require("@actions/github");
           issue_number: github.context.issue.number,
         });
       } catch (err) {
-        core.error(err);
         //label not found continue
       }
     }
