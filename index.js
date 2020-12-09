@@ -15,22 +15,24 @@ const github = require("@actions/github");
     }
 
     const octokit = github.getOctokit(githubToken);
-    const repoData = github.context.repo ;
+    const contextRepo = github.context.repo;
     console.error('*****ju***** index.js.19', github.context.repo.owner, github.context.repo.repo, github.context.repo);
-    if (!repoData.owner || !repoData.repo) {
+    if (!contextRepo.owner || !contextRepo.repo) {
       throw new Error('No repo data')
     }
 
     for (const label of labels) {
+      console.log(`Removing label ${label}`)
       try {
         await octokit.issues.removeLabel({
           name: label,
-          owner: repoData.owner,
-          repo: repoData.repo,
+          owner: contextRepo.owner,
+          repo: contextRepo.repo,
           issue_number: github.context.issue.number,
         });
+        console.log(`Removed label ${label}`)
       } catch (err) {
-        //label not found continue
+        console.log(`No label ${label}`)
       }
     }
   } catch (e) {
