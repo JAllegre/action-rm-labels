@@ -6,27 +6,25 @@ const github = require("@actions/github");
 (async function () {
   try {
     const githubToken = core.getInput("github_token", { required: true });
-    const labels = (core.getInput("labels") || "")
+    const labels = (core.getInput("labels", { required: true }) || "")
       .split(",")
       .filter((label) => label && label.length);
 
     if (labels.length === 0) {
-      return;
+      throw new Error('no label provided')
     }
 
     const gitHubClient = github.getOctokit(githubToken);
-    console.error(
-      "*****ju***** index.js.32",
-      "github.context.repo:",
-      repoData.owner,
-      repoData.repo
-    );
+    const repoData = gitHubClient.context.repo ;
+    if (!repoData.owner || repoData.repo) {
+      throw new Error('no label provided')
+    }
     for (const label of labels) {
-      console.error('*****ju***** index.js.30','label', label);
+      console.error("*****ju***** index.js.30", "label", label);
       try {
         await gitHubClient.issues.removeLabel({
           name: label,
-          owner:  repoData.owner,
+          owner: repoData.owner,
           repo: repoData.repo,
           issue_number: github.context.issue.number,
         });
