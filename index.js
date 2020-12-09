@@ -5,7 +5,7 @@ const github = require('@actions/github');
   try {
     const githubToken = core.getInput('github_token', { required: true });
     const labels = core.getInput('labels')
-    console.error('*****ju***** index.js.7','labels', labels);
+    core.error('*****ju***** index.js.7','labels', labels);
     
     labels = labels.split('\n').filter(label => (label && label.length));
 
